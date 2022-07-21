@@ -3,10 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "workspaces": [
-    "../libs/*",
-    "./libs/*"
-  ],
+  "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -24,5 +21,12 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.18.1"
-  }
+  },
+  "devDependencies": {
+    "lerna": "^5.1.8"
+  },
+  "workspaces": [
+    "../libs/*",
+    "./libs/*"
+  ]
 }
