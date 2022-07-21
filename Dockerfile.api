@@ -1,0 +1,24 @@
+FROM node:18.3.0-buster-slim
+
+# Adding CA Certificates for slim images
+RUN apt-get update && apt-get install -y ca-certificates
+
+ENV HOME=/home/app
+
+COPY api $HOME/node_docker/
+
+COPY libs $HOME/node_docker/libs
+
+WORKDIR $HOME/node_docker
+
+RUN npm install --production
+
+COPY . $HOME/node_docker
+
+ARG DOCKER_ENV
+
+ENV NODE_ENV=${DOCKER_ENV}
+
+EXPOSE 3751
+
+CMD sleep 10; node index.js
