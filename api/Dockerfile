@@ -1,13 +1,15 @@
 FROM node:18.3.0-buster-slim
 
-# Adding CA Certificates for slim images
+# We only copy the dependencies we need
+WORKDIR /project
+COPY libs/package_a libs/package_a
+COPY libs/package_b libs/package_b
+
 RUN apt-get update && apt-get install -y ca-certificates
 
 ENV HOME=/home/app
 
-COPY api $HOME/node_docker/
-
-COPY libs $HOME/node_docker/libs
+COPY api/package.json api/yarn.lock $HOME/node_docker/
 
 WORKDIR $HOME/node_docker
 
@@ -21,4 +23,4 @@ ENV NODE_ENV=${DOCKER_ENV}
 
 EXPOSE 3751
 
-CMD node index.js
+CMD node api/index.js

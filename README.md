@@ -20,7 +20,7 @@ node (or nodemon) api/index.js
 ### How to build
 
 ```bash
-docker build -t node-with-workspaces -f Dockerfile.api .
+docker build -t node-with-workspaces -f ./api/Dockerfile .
 ```
 
 ### How to start image
